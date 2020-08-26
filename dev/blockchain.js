@@ -35,6 +35,9 @@ Blockchain.prototype.createNewTransaction = function(amount, sender, recipient) 
      recipient: recipient
    };
    this.pendingTransactions.push(newTransaction)
+
+  //  returning the number of the block our new tx was added to
+   return this.getLastBlock()['index'] + 1
 }
 
 module.exports = Blockchain
