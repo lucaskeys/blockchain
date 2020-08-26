@@ -12,7 +12,15 @@ Blockchain.prototype.createNewBlock = function(nonce, previousBlockHash, hash) {
     transactions: this.newTransactions,
     // the nonce is proof that we created this block in a legit way using PoW
     nonce: nonce,
-    // this hash will be the data from our new block
-    hash: hash
+    hash: hash,
+    previousBlockHash: previousBlockHash
   }
+
+  this.newTransactions = [];
+  // clear transactions to start the next block
+  // Adds to chain
+  this.chain.push(newBlock)
+  return newBlock;
 }
+
+module.exports = Blockchain
