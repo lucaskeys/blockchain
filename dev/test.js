@@ -4,14 +4,12 @@ const bitcoin = new Blockchain();
 
 const previousBlockHash = 'KHDFS98SFKJN8Y8';
 const currentBlockData = [
-  {amount: .10, sender: 'ODSIFU0934N', recipient: 'IU34ER5ULKJ'},
-  {amount: .4310, sender: 'SGDFDPOI', recipient: '564PIOLMS'},
+  {amount: .10, sender: 'ODSIFU0934N', recipient: 'IU34ER5KLULKJ'},
+  {amount: .4310, sender: 'SGDFDPOI', recipient: 'KJHFDLK'},
   {amount: .000950438, sender: '435LKJ', recipient: '543LKOVFIJ'}
 ];
-const nonce = 342490;
 
-console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce));
-
+console.log(bitcoin.proofOfWork(previousBlockHash, currentBlockData));
 // bitcoin.createNewBlock(4323, '2425DFSFW24FW', '324KJDSF90S')
 // bitcoin.createNewTransaction(0.0321, 'SEND19da923fdWkDFKJ9n', 'RECEP19jfdk9JHFDS9')
 
