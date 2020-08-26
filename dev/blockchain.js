@@ -1,7 +1,7 @@
 function Blockchain() {
   this.chain = [];
   // All blocks that will be mined will be stored in a chain
-  this.newTransactions = []
+  this.pendingTransactions = []
 }
 
 Blockchain.prototype.createNewBlock = function(nonce, previousBlockHash, hash) {
@@ -9,18 +9,32 @@ Blockchain.prototype.createNewBlock = function(nonce, previousBlockHash, hash) {
     // where in the chain is this at
     index: this.chain.length + 1,
     timeStamp: Date.now(),
-    transactions: this.newTransactions,
+    transactions: this.pendingTransactions,
     // the nonce is proof that we created this block in a legit way using PoW
     nonce: nonce,
     hash: hash,
     previousBlockHash: previousBlockHash
   }
 
-  this.newTransactions = [];
+  this.pendingTransactions = [];
   // clear transactions to start the next block
   // Adds to chain
   this.chain.push(newBlock)
   return newBlock;
+}
+
+Blockchain.prototype.getLastBlock = function() {
+  return this.chain[this.chain.length - 1]
+  // this is the last block in the chain
+}
+
+Blockchain.prototype.createNewTransaction = function(amount, sender, recipient) {
+   const newTransaction = {
+     amount: amount,
+     sender: sender,
+     recipient: recipient
+   };
+   this.pendingTransactions.push(newTransaction)
 }
 
 module.exports = Blockchain
