@@ -1,4 +1,4 @@
-import sha256 from 'sha256'
+const sha256 = require('sha256')
 
 function Blockchain() {
   this.chain = [];
