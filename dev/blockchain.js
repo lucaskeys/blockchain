@@ -40,4 +40,9 @@ Blockchain.prototype.createNewTransaction = function(amount, sender, recipient) 
    return this.getLastBlock()['index'] + 1
 }
 
+// takes in block from chain and hash that block into a fixed length string
+Blockchain.prototype.hashBlock = function(blockData) {
+  
+}
+
 module.exports = Blockchain
