@@ -9,7 +9,7 @@ const currentBlockData = [
   {amount: .000950438, sender: '435LKJ', recipient: '543LKOVFIJ'}
 ];
 
-console.log(bitcoin.proofOfWork(previousBlockHash, currentBlockData));
+
 // bitcoin.createNewBlock(4323, '2425DFSFW24FW', '324KJDSF90S')
 // bitcoin.createNewTransaction(0.0321, 'SEND19da923fdWkDFKJ9n', 'RECEP19jfdk9JHFDS9')
 
@@ -23,3 +23,8 @@ console.log(bitcoin.proofOfWork(previousBlockHash, currentBlockData));
 
 // bitcoin.createNewBlock(20938, 'KHJEW890DUU32NLK', 'SOFIU32HJC09U')
 // console.log(bitcoin.chain[2])
+
+// console.log(bitcoin.proofOfWork(previousBlockHash, currentBlockData));
+// console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, 7391));
+
+console.log(bitcoin)

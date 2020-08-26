@@ -3,8 +3,13 @@ const sha256 = require('sha256')
 function Blockchain() {
   this.chain = [];
   // All blocks that will be mined will be stored in a chain
-  this.pendingTransactions = []
-}
+  this.pendingTransactions = [];
+
+  // Creating the Genesis block
+  this.createNewBlock(100, '0', '0');
+};
+
+
 
 Blockchain.prototype.createNewBlock = function(nonce, previousBlockHash, hash) {
   const newBlock = {
