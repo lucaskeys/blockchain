@@ -1,3 +1,5 @@
+import sha256 from 'sha256'
+
 function Blockchain() {
   this.chain = [];
   // All blocks that will be mined will be stored in a chain
@@ -41,8 +43,10 @@ Blockchain.prototype.createNewTransaction = function(amount, sender, recipient) 
 }
 
 // takes in block from chain and hash that block into a fixed length string
-Blockchain.prototype.hashBlock = function(blockData) {
-  
+Blockchain.prototype.hashBlock = function(previousBlockHash, currentBlockData, nonce) {
+  const dataAsString = previousBlockHash + nonce.toString() + JSON.stringify(currentBlockData)
+  const hash = sha256(dataAsString);
+  return hash;
 }
 
 module.exports = Blockchain
