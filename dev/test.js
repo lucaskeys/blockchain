@@ -27,4 +27,6 @@ const currentBlockData = [
 // console.log(bitcoin.proofOfWork(previousBlockHash, currentBlockData));
 // console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, 7391));
 
+
+
 console.log(bitcoin)
