@@ -5,6 +5,9 @@ const Blockchain = require('./blockchain')
 const { v4: uuidv4 } = require('uuid');
 // creates a unique random string and use as this node address - cannot have two nodes with the same address
 
+// refers to the command to run the server
+const port = process.argv[2];
+
 const nodeAddress = uuidv4().split('-').join('')
 
 const bitcoin = new Blockchain();
@@ -44,7 +47,22 @@ app.get('/mine', function(req, res) {
     block: newBlock
   })
 })
+//First step - register new url on a node and broadcast node to the entire network
+app.post('/register-and-broadcast-node', function(req, res) {
+  const newNodeUrl = req.body.newNodeUrl;
+
+})
+// register a node with the network - register node will trigger it registering it to other nodes, but dont need to broadcast data
+app.post('/register-node', function(req, res) {
+
+
+})
+// register the rest of the url/nodes that are already present on the new node thats being added so all are part of network
+// register multiple nodes at once
+app.post('/register-nodes-bulk', function(res, req) {
+
+})
  
-app.listen(3000, function() {
-  console.log('Listening on port 3000')
+app.listen(port, function() {
+  console.log(`Listening on port ${port}...`)
 })
