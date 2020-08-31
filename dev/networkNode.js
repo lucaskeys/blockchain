@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const Blockchain = require('./blockchain')
 const { v4: uuidv4 } = require('uuid');
+const rp = require('request-promise')
 // creates a unique random string and use as this node address - cannot have two nodes with the same address
 
 // refers to the command to run the server
@@ -50,7 +51,27 @@ app.get('/mine', function(req, res) {
 //First step - register new url on a node and broadcast node to the entire network
 app.post('/register-and-broadcast-node', function(req, res) {
   const newNodeUrl = req.body.newNodeUrl;
+  if(bitcoin.networkNodes.indexOf(newNodeUrl) === -1) bitcoin.networkNodes.push(newNodeUrl);
 
+  const regNodesPromises = [];
+  bitcoin.networkNodes.forEach(networkNodeUrl => {
+    /// 'register node endpoint'
+    const requestOptions = {
+      uri: networkNodeUrl + '/register-node',
+      method: 'POST',
+      body: {newNodeUrl: newNodeUrl},
+      json: true
+    }
+    // this is allowing it to be asynchronous with the rp library
+    regNodesPromises.push(rp(requestOptions))
+  })
+  Promise.all(regNodesPromises).then(data => {
+     const bulkRegisterOptions = {
+       uri: newNodeUrl + '/register-nodes-bulk',
+       method: 'POST',
+       body: {allNetWorkNodes: [...bitcoin.networkNodes] }
+     }
+  })
 })
 // register a node with the network - register node will trigger it registering it to other nodes, but dont need to broadcast data
 app.post('/register-node', function(req, res) {
